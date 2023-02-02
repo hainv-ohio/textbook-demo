@@ -4,8 +4,7 @@ import requests
 import aspose.words as aw
 from fastapi import APIRouter
 from loguru import logger
-from bs4 import BeautifulSoup
-
+from fastapi.responses import HTMLResponse
 
 converter_router = APIRouter(prefix='/convert')
 
@@ -38,4 +37,4 @@ async def pdf_to_html(filename: str):
     os.remove(file_name)
     os.remove(output_file)
     os.remove(output_image)
-    return html_str
+    return HTMLResponse(html_str)
